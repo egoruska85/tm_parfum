@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
   def set_variables
+    @time = Time.now
     @carousel_active = CarouselActive.all
     @carousel = Carousel.all
   end
