@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_action :set_page_option
   def index
-    @a = 0
+    
   end
 
   private
