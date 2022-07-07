@@ -20,12 +20,12 @@
     <li class="nav-item">
 
 
-      <% if category.id == params[:id].to_i %>
+      <% if category.id == @gendercategory.category_id %>
 
         <p class="nav-link active" style="color: grey;"><%= category.title %></p>
 
       <% end %>
-      <% if category.id != params[:id].to_i %>
+      <% if category.id != @gendercategory.category_id %>
       <%= link_to category_path(category), class:"nav-link", style:"color: black;" do %>
         <%= category.title %>
       <% end %>

@@ -2,10 +2,10 @@
 
 </head>
 <%= render '/home/carousel' %>
-<%= render 'include/home/navigation' %>
+<%= render 'navigation' %>
 <div class="container">
   <div class="border border-dark badge container">
-    <% @category.gendercategories.each do |gender| %>
+    <% @gendercategories.each do |gender| %>
 
     <%= link_to gendercategory_path(gender), class:'btn', style:"color: #{gender.color} " do %>
         <b><%= gender.title %></b>
@@ -13,10 +13,12 @@
     <% end %>
   </div>
 </div>
-
-
 <div class="container">
   <div class="container border border-dark badge">
-    <h1 style="color: blue;"><%= @category.title %></h1>
+    <h1 style="color: blue;">
+      <% @category.each do |category| %>
+        <%= category.title %>
+      <% end %>
+    </h1>
   </div>
 </div>

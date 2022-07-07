@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_04_183349) do
+ActiveRecord::Schema.define(version: 2022_07_06_204524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 2022_07_04_183349) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.string "title"
+    t.string "title_tm"
+    t.string "country"
+    t.string "country_tm"
+    t.bigint "gendercategory_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_brands_on_category_id"
+    t.index ["gendercategory_id"], name: "index_brands_on_gendercategory_id"
   end
 
   create_table "carousel_actives", force: :cascade do |t|
@@ -64,6 +77,16 @@ ActiveRecord::Schema.define(version: 2022_07_04_183349) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gendercategories", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "title"
+    t.string "title_tm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "color"
+    t.index ["category_id"], name: "index_gendercategories_on_category_id"
+  end
+
   create_table "logos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,4 +108,7 @@ ActiveRecord::Schema.define(version: 2022_07_04_183349) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "brands", "categories"
+  add_foreign_key "brands", "gendercategories"
+  add_foreign_key "gendercategories", "categories"
 end
